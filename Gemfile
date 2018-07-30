@@ -1,37 +1,48 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'rails'
+gem 'activeadmin'
+gem 'bootsnap', require: false
+gem 'cancan'
+gem 'carrierwave'
+gem 'coffee-rails'
+gem 'devise'
+gem 'jbuilder'
+gem 'kaminari'
+gem 'mini_magick'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'pg'
 gem 'puma'
+gem 'rails'
+gem 'rubocop'
 gem 'sass-rails'
-gem 'uglifier'
-gem 'coffee-rails'
 gem 'turbolinks'
-gem 'jbuilder'
-gem 'bootsnap', require: false
+gem 'uglifier'
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'pry-rails'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :development do
-  gem 'web-console'
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'shoulda-matchers'
   gem 'ffaker'
+  gem 'shoulda-matchers'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
