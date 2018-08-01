@@ -14,11 +14,12 @@ RSpec.describe Book, type: :model do
   end
 
   context 'relations' do
-    it { is_expected.to have_many(:author_books) }
+    it { is_expected.to have_many(:author_books).dependent(:destroy) }
     it { is_expected.to have_many(:authors).through(:author_books) }
-    it { is_expected.to have_many(:reviews) }
-    it { is_expected.to have_many(:book_categories) }
+    it { is_expected.to have_many(:reviews).dependent(:destroy) }
+    it { is_expected.to have_many(:book_categories).dependent(:destroy) }
     it { is_expected.to have_many(:categories).through(:book_categories) }
-    it { is_expected.to have_many(:pictures) }
+    it { is_expected.to have_many(:pictures).dependent(:destroy) }
+    it { is_expected.to have_many(:order_items).dependent(:destroy) }
   end
 end

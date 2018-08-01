@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20_180_730_131_314) do
     t.string 'city'
     t.string 'zip'
     t.string 'phone'
-    t.string 'address_type'
+    t.string 'type'
     t.string 'addressable_type'
     t.bigint 'addressable_id'
     t.datetime 'created_at', null: false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20_180_730_131_314) do
   end
 
   create_table 'orders', force: :cascade do |t|
+    t.string 'order_number'
     t.decimal 'total_price', precision: 10, scale: 2
     t.string 'state'
     t.bigint 'user_id'

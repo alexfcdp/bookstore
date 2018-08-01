@@ -14,6 +14,6 @@ RSpec.describe CreditCard, type: :model do
 
   context 'relations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to have_many(:orders) }
+    it { is_expected.to have_many(:orders).dependent(:destroy) }
   end
 end

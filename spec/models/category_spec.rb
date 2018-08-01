@@ -8,7 +8,7 @@ RSpec.describe Category, type: :model do
   end
 
   context 'relations' do
-    it { is_expected.to have_many(:book_categories) }
+    it { is_expected.to have_many(:book_categories).dependent(:destroy) }
     it { is_expected.to have_many(:books).through(:book_categories) }
   end
 end

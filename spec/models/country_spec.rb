@@ -8,6 +8,6 @@ RSpec.describe Country, type: :model do
   end
 
   context 'relations' do
-    it { is_expected.to have_many(:addresses) }
+    it { is_expected.to have_many(:addresses).dependent(:destroy) }
   end
 end
