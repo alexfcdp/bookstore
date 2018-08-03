@@ -17,4 +17,10 @@ RSpec.describe Address, type: :model do
     it { is_expected.to belong_to(:country) }
     it { is_expected.to belong_to(:addressable) }
   end
+
+  context 'validations' do
+    %w[firstname lastname address city zip phone].each do |value|
+      it { is_expected.to validate_presence_of(value.to_sym) }
+    end
+  end
 end

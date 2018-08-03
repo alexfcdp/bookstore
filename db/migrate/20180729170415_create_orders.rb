@@ -3,7 +3,7 @@
 class CreateOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :orders do |t|
-      t.string :order_number
+      t.string :order_number, index: { unique: true }
       t.decimal :total_price, precision: 10, scale: 2
       t.string :state
       t.belongs_to :user, foreign_key: true

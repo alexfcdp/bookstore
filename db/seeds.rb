@@ -42,12 +42,12 @@ Book.all.each do |book|
   end
 end
 
-10.times { Country.create!(name: FFaker::Address.country) }
+10.times { Country.create!(name: FFaker::Address.country,phone_code:FFaker::PhoneNumber.phone_calling_code) }
 
 User.first.create_billing_address(firstname: 'Alex', lastname: 'Doe', address: 'kirova', \
-                                  city: 'dnipro', zip: '49000', phone: '+380972293095', country_id: 1)
+                                  city: 'dnipro', zip: FFaker::Address.zip_code, phone: '+380972293095', country_id: 1)
 User.first.create_shipping_address(firstname: 'Nikita', lastname: 'John', address: 'pobeda', \
-                                   city: 'kiev', zip: '57000', phone: '+380675423870', country_id: 1)
+                                   city: 'kiev', zip: FFaker::Address.zip_code, phone: '+380675423870', country_id: 1)
 
 # 5.times { Order.create(total_price: prng.rand(10..100), state: 'in progress', \
 # user_id: prng.rand(1..5), credit_card_id: 1) }
