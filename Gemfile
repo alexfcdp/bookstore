@@ -23,6 +23,7 @@ gem 'rubocop'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

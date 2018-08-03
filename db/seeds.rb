@@ -14,9 +14,9 @@ end
                dimensions: FFaker::Color.name, published_at: prng.rand(2000..2018))
 end
 
-Book.all.each do |book|
-  prng.rand(1..5).times { book.pictures.create!(file: FFaker::Avatar.image) }
-end
+# Book.all.each do |book|
+#   prng.rand(1..5).times { book.pictures.create!(file: FFaker::Avatar.image) }
+# end
 
 10.times do
   Category.create!(title: FFaker::Book.genre)
@@ -31,9 +31,9 @@ end
 
 5.times { User.create!(email: FFaker::Internet.email, password: FFaker::Internet.password) }
 
-User.all.each do |user|
-  prng.rand(1..5).times { user.create_picture(file: FFaker::Avatar.image) }
-end
+# User.all.each do |user|
+#   prng.rand(1..5).times { user.create_picture(file: FFaker::Avatar.image) }
+# end
 
 Book.all.each do |book|
   prng.rand(1..5).times do
