@@ -6,6 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 gem 'activeadmin'
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
 gem 'cancan'
 gem 'carrierwave'
@@ -23,7 +24,6 @@ gem 'rubocop'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
-gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

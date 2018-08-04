@@ -42,7 +42,7 @@ Book.all.each do |book|
   end
 end
 
-10.times { Country.create!(name: FFaker::Address.country,phone_code:FFaker::PhoneNumber.phone_calling_code) }
+10.times { Country.create!(name: FFaker::Address.country, phone_code: FFaker::PhoneNumber.phone_calling_code) }
 
 User.first.create_billing_address(firstname: 'Alex', lastname: 'Doe', address: 'kirova', \
                                   city: 'dnipro', zip: FFaker::Address.zip_code, phone: '+380972293095', country_id: 1)
@@ -54,3 +54,7 @@ User.first.create_shipping_address(firstname: 'Nikita', lastname: 'John', addres
 
 # CreditCard.create(number: '4142514219000478', card_owner: 'Alex Don', cvv_code: 0o75, \
 # expiry_date: '05/21', user_id: 1, order_id: 1)
+User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+user = User.create!(email: 'alex@gmail.com', password: '123456')
+user.avatar.attach(io: File.open(Rails.root.join('public/img', 'avatar.jpg')), \
+                   filename: 'avatar.jpg', content_type: 'image/jpg')
