@@ -9,6 +9,8 @@ class Ability
     if user.admin?
       can :read, ActiveAdmin::Page, namespace_name: :admin
       can :manage, :all
+      cannot :update, [User, Review]
+      can :update, User, id: user.id
     end
   end
 end

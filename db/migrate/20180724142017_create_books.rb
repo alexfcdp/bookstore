@@ -8,7 +8,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.decimal :price, precision: 6, scale: 2
       t.integer :quantity
       t.string :materials
-      t.string :dimensions
+      t.text :dimensions
       t.integer :published_at
 
       t.timestamps
