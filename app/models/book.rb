@@ -11,20 +11,21 @@ class Book < ApplicationRecord
   has_many_attached :images
   attr_accessor :height, :width, :depth
   validates :height, :width, :depth, numericality: true, allow_blank: true
-  validate :image_type
+  validates :images, file_size: { less_than_or_equal_to: 1.megabyte, message: 'Images should be less than %{count}'},
+                     file_content_type: {allow: ['image/jpeg','image/png'], message: 'Images only allows jpeg and png'}
 
   def properties
     "H:#{dimensions[:height]}\" x W:#{dimensions[:width]}\" x D:#{dimensions[:depth]}"
   end
 
-  private
+  # private
 
-  def image_type
-    images.each do |image|
-      unless image.content_type.in?(%w[image/png image/jpeg])
-        errors.add(:images, 'Image needs to be a JPEG or PNG')
-        images.purge_later
-      end
-    end
-  end
+  # def image_type
+  #   images.each do |image|
+  #     unless image.content_type.in?(%w[image/png image/jpeg])
+  #       errors.add(:images, 'Image needs to be a JPEG or PNG')
+  #       images.purge_later
+  #     end
+  #   end
+  # end
 end

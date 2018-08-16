@@ -24,6 +24,9 @@ gem 'rubocop'
 gem 'sass-rails'
 gem 'turbolinks'
 gem 'uglifier'
+gem 'aasm'
+gem 'wicked'
+gem 'file_validators'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -37,6 +40,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen'
   gem 'web-console'
+  gem 'letter_opener'
+  # gem 'letter_opener_web'
 end
 
 group :test do
