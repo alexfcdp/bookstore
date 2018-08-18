@@ -27,6 +27,9 @@ gem 'uglifier'
 gem 'aasm'
 gem 'wicked'
 gem 'file_validators'
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+gem 'draper'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -41,7 +44,7 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'web-console'
   gem 'letter_opener'
-  # gem 'letter_opener_web'
+  gem 'letter_opener_web'
 end
 
 group :test do

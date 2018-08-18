@@ -14,8 +14,10 @@ class Book < ApplicationRecord
   validates :images, file_size: { less_than_or_equal_to: 1.megabyte, message: 'Images should be less than %{count}'},
                      file_content_type: {allow: ['image/jpeg','image/png'], message: 'Images only allows jpeg and png'}
 
+  # scope :lattest_books, ->(count) { order(created_at: :desc).limit(products_count) }
+
   def properties
-    "H:#{dimensions[:height]}\" x W:#{dimensions[:width]}\" x D:#{dimensions[:depth]}"
+    "H:#{dimensions[:height]}\" x W:#{dimensions[:width]}\" x D:#{dimensions[:depth]}\""
   end
 
   # private
