@@ -12,4 +12,8 @@ test:
   database: bookstore_test
 
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: bookstore
+  username: <%= Rails.application.credentials.dig(:db_pg, :username) %>
+  password: <%= Rails.application.credentials.dig(:db_pg, :password) %>
+  host: localhost
