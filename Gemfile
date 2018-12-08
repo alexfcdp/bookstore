@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'active_storage_validations'
 gem 'activeadmin'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
@@ -13,6 +14,7 @@ gem 'cancancan'
 gem 'coffee-rails'
 gem 'devise'
 gem 'draper'
+gem 'ffaker'
 gem 'file_validators'
 gem 'font-awesome-rails'
 gem 'jbuilder'
@@ -31,7 +33,6 @@ gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wicked'
-gem 'active_storage_validations'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -54,7 +55,6 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'ffaker'
   gem 'shoulda-matchers'
 end
 
