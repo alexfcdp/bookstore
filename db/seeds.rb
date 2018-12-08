@@ -2,55 +2,84 @@
 
 require 'ffaker'
 
-prng = Random.new
-
-10.times do
-  Author.create!(firstname: FFaker::Name.first_name, lastname: FFaker::Name.last_name, biography: FFaker::Lorem.word)
+15.times do
+  Author.create!(firstname: FFaker::Name.first_name, lastname: FFaker::Name.last_name, \
+                 biography: FFaker::Lorem.paragraph)
 end
 
-10.times do
-  Book.create!(title: FFaker::Book.title, description: FFaker::Book.description, \
-               price: prng.rand(100), quantity: prng.rand(100), materials: FFaker::Book.isbn, \
-               dimensions: { height: prng.rand(0..20), width: prng.rand(0..20), depth: prng.rand(0..20) }, \
-               published_at: prng.rand(2000..2018))
+['Mobile Development', 'Web Development', 'Web Design', 'Photo'].each do |title|
+  Category.create!(title: title)
 end
 
-10.times do
-  Category.create!(title: FFaker::Book.genre)
-end
+materials = ['Genuine Leather', 'Artificial Leather', 'Designer Paper', 'Bung', 'Fabric Binding', \
+             'Whole leather', 'Composite leather binding', 'Inlaid leather binding', 'Calico', 'Lederin']
 
-Category.all.each do |category|
-  prng.rand(1..5).times do
-    category.books << Book.all[prng.rand(0..9)]
-    category.save!
-  end
+30.times do
+  book = Book.new(title: FFaker::Book.title, description: FFaker::Book.description, \
+                  price: rand(3.5..100), quantity: rand(1..100), materials: materials[rand(0..9)], \
+                  height: rand(0.1..6), width: rand(0.1..4), depth: rand(0.1..2), published_at: rand(2000..2018))
+  book.dimensions = { height: book.height.round(2), width: book.width.round(2), depth: book.depth.round(2) }
+  book.save!
 end
 
 5.times { User.create!(email: FFaker::Internet.email, password: FFaker::Internet.password) }
+user = User.create!(email: 'admin@amazing.com', password: '12345678', admin: true)
+user.avatar.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'avatar.jpg')), \
+                   filename: 'avatar.jpg', content_type: 'image/jpg')
 
 Book.all.each do |book|
-  prng.rand(1..5).times do
-    book.reviews.new(title: FFaker::Company.position, comment: FFaker::Company.catch_phrase, \
-                     rating: prng.rand(0..10), status: Review.statuses[:unprocessed], user_id: prng.rand(1..5)).save!
+  Category.all[rand(0..3)].books << book
+  rand(1..3).times { book.authors << Author.all[rand(0..14)] }
+  rand(1..4).times do
+    book.reviews.create!(title: FFaker::Job.title, comment: FFaker::Lorem.sentence(5), \
+                         rating: rand(1..5), status: Review.statuses.keys[rand(0..2)], user_id: rand(1..6))
   end
+  # file = URI.parse(FFaker::Avatar.image).open
+  # 4.times do
+  #   book.images.attach(io: file, filename: file.to_s, content_type: 'image/png')
+  # end
 end
 
-10.times { Country.create!(name: FFaker::Address.country, phone_code: FFaker::PhoneNumber.phone_calling_code) }
+Coupon.create!(code: 'BLACK-555', discount: 100)
+Coupon.create!(code: 'AMAZING', discount: 50)
+Coupon.create!(code: '666666', discount: 25)
 
-User.first.create_billing_address(firstname: 'Alex', lastname: 'Doe', address: 'kirova', \
-                                  city: 'dnipro', zip: FFaker::Address.zip_code, phone: '+380972293095', country_id: 1)
-User.first.create_shipping_address(firstname: 'Nikita', lastname: 'John', address: 'pobeda', \
-                                   city: 'kiev', zip: FFaker::Address.zip_code, phone: '+380675423870', country_id: 1)
+Delivery.create!(name: 'DHL Global', terms: '1 to 5 day', price: 50)
+Delivery.create!(name: 'UPS', terms: '1 to 5 day', price: 55)
+Delivery.create!(name: 'DELIVERY', terms: '2 to 7 day', price: 30)
+Delivery.create!(name: 'IN TIME', terms: '2 to 10 day', price: 22)
 
-# 5.times { Order.create(total_price: prng.rand(10..100), state: 'in progress', \
-# user_id: prng.rand(1..5), credit_card_id: 1) }
+Country.create!(name: 'Ukraine', phone_code: '+380')
+7.times { Country.create!(name: FFaker::Address.country, phone_code: FFaker::PhoneNumber.phone_calling_code) }
 
-# CreditCard.create(number: '4142514219000478', card_owner: 'Alex Don', cvv_code: 0o75, \
-# expiry_date: '05/21', user_id: 1, order_id: 1)
-# User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-# User.all.each do |user|
-#   prng.rand(1..5).times { user.create_picture(file: FFaker::Avatar.image) }
-# end
-user = User.create!(email: 'alex@gmail.com', password: '123456', admin: true)
-user.avatar.attach(io: File.open(Rails.root.join('app/assets/images', 'avatar.jpg')), \
-                   filename: 'avatar.jpg', content_type: 'image/jpg')
+user.create_billing_address(firstname: 'Alex', lastname: 'Doe', address: 'Kirova 112', \
+                            city: 'Dnipro', zip: '49000', phone: '+380972293095', country_id: 1)
+user.create_shipping_address(firstname: 'Nikita', lastname: 'John', address: 'Pobeda 36', \
+                             city: 'Kiev', zip: '49000', phone: '+380675423870', country_id: 1)
+
+User.all.each do |u|
+  rand(1..3).times do
+    number = "R#{Array.new(8) { [*'0'..'9'].sample }.join}"
+    u.orders.create!(order_number: number, delivery: Delivery.all[rand(0..3)], coupon: Coupon.all[rand(0..2)])
+  end
+  u.orders.create!(order_number: "R#{Array.new(8) { [*'0'..'9'].sample }.join}", delivery: Delivery.all[rand(0..3)])
+end
+
+Order.all.each do |order|
+  book = Book.all[rand(0..29)]
+  quantity = rand(1..30)
+  sub_total = book.price * quantity
+  order.order_items.create!(price: book.price, quantity: quantity, sub_total: sub_total, book: book)
+  order.create_billing_address(firstname: 'Alex', lastname: 'Doe', address: 'Kirova 112', \
+                               city: 'Dnipro', zip: '49000', phone: '+380972293095', country_id: 1)
+  order.create_shipping_address(firstname: 'Nikita', lastname: 'John', address: 'Pobeda 36', \
+                                city: 'Kiev', zip: '49000', phone: '+380675423870', country_id: 1)
+  order.create_credit_card(number: rand(1000..9999), card_owner: FFaker::NameDE.name, expiry_date: '12/20')
+  discount = order.coupon.blank? ? 0 : order.coupon.discount
+  total = sub_total - discount + order.delivery.price
+  order.update(total_price: total, status: Order.statuses.keys[rand(1..4)])
+end
+
+Order.create!(order_number: "R#{Array.new(8) { [*'0'..'9'].sample }.join}")
+Order.create!(order_number: "R#{Array.new(8) { [*'0'..'9'].sample }.join}")
+Order.create!(order_number: "R#{Array.new(8) { [*'0'..'9'].sample }.join}")

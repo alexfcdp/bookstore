@@ -13,3 +13,6 @@ Metrics/MethodLength:
 Metrics/BlockLength:  
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+

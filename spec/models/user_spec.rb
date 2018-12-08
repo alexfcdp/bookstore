@@ -10,7 +10,6 @@ RSpec.describe User, type: :model do
 
   context 'relations' do
     it { is_expected.to have_many(:reviews).dependent(:destroy) }
-    it { is_expected.to have_one(:picture).dependent(:destroy) }
     it { is_expected.to have_one(:billing_address).dependent(:destroy) }
     it { is_expected.to have_one(:shipping_address).dependent(:destroy) }
     it { is_expected.to have_many(:orders).dependent(:destroy) }

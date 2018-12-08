@@ -10,6 +10,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.string :materials
       t.text :dimensions
       t.integer :published_at
+      t.integer :order_items_count, null: false, default: 0
 
       t.timestamps
     end

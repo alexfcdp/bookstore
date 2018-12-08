@@ -2,6 +2,37 @@
 
 en:
   devise:
+    instructions: 'Resend confirmation instructions'
+    set_password: 'Set new password'
+    change: 'Change'
+    cancel: 'Cancel'
+    label_password: 'Type a new Password'
+    confirm_password: 'Confirm Password'
+    forgot_password: 'Forgot your password?'
+    email_reset: "We'll email you instructions on how to reset it"
+    enter_email: 'Enter your email'
+    email_instructions: 'Email Instructions'
+    settings: 'Settings'
+    address: 'Address'
+    privacy: 'Privacy'
+    email: 'Email'
+    email_enter: 'Enter Email'
+    avatar: 'Avatar'
+    password: 'Password'
+    old_password: 'Old Password'
+    new_password: 'New Password'
+    characters_minimum: 'characters minimum'
+    remove_account: 'Remove Account'
+    remove_my_account: 'Please Remove My Account'
+    are_you_sure: 'Are you sure?'
+    understand: 'I understand that all data will be lost'
+    sign_up: 'Sign Up'
+    or: 'or'
+    have_account: 'Have an Account?'
+    log_in: 'Log In'
+    back_to_store: 'Back to Store'
+    dont_have_account: "Don’t have an Account?"
+    currently_confirmation: 'Currently waiting confirmation for:'
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."

@@ -9,8 +9,9 @@ RSpec.describe Book, type: :model do
     it { is_expected.to have_db_column(:price).of_type(:decimal) }
     it { is_expected.to have_db_column(:quantity).of_type(:integer) }
     it { is_expected.to have_db_column(:materials).of_type(:string) }
-    it { is_expected.to have_db_column(:dimensions).of_type(:string) }
+    it { is_expected.to have_db_column(:dimensions).of_type(:text) }
     it { is_expected.to have_db_column(:published_at).of_type(:integer) }
+    it { is_expected.to have_db_column(:order_items_count).of_type(:integer) }
   end
 
   context 'relations' do
@@ -19,7 +20,6 @@ RSpec.describe Book, type: :model do
     it { is_expected.to have_many(:reviews).dependent(:destroy) }
     it { is_expected.to have_many(:book_categories).dependent(:destroy) }
     it { is_expected.to have_many(:categories).through(:book_categories) }
-    it { is_expected.to have_many(:pictures).dependent(:destroy) }
     it { is_expected.to have_many(:order_items).dependent(:destroy) }
   end
 end

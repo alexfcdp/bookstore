@@ -1,6 +1,21 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Delivery do
-  menu priority: 7
+  menu priority: 8
   permit_params :name, :terms, :price
+
+  index do
+    selectable_column
+    column :name
+    column :terms
+    column :price
+    actions
+  end
+
+  filter :name
+  filter :terms
+  filter :price
+
+  config.sort_order = 'name_asc'
+  config.per_page = [10, 20, 50, 100]
 end

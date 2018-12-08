@@ -10,9 +10,10 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.string :zip
       t.string :phone
       t.string :type
-      t.references :addressable, polymorphic: true
+      t.belongs_to :addressable, polymorphic: true
 
       t.timestamps
     end
+    add_index :addresses, %i[addressable_id addressable_type]
   end
 end

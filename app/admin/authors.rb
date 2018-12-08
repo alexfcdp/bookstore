@@ -7,7 +7,9 @@ ActiveAdmin.register Author do
   index do
     selectable_column
     id_column
-    column 'Author', &:to_s
+    column I18n.t('admin.author') do |author|
+      link_to author.to_s, admin_author_path(author)
+    end
     column :created_at
     actions
   end

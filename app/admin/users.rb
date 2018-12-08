@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :admin, :avatar
 
   action_item :del_avatar, only: :show do
-    link_to 'Delete avatar', avatar_admin_user_path(user), method: :put if user.avatar.attached?
+    link_to I18n.t('admin.del_avatar'), avatar_admin_user_path(user), method: :put if user.avatar.attached?
   end
 
   member_action :avatar, method: :put do
@@ -16,9 +16,9 @@ ActiveAdmin.register User do
   index do
     selectable_column
     id_column
-    column 'Avatar' do |user|
+    column I18n.t('admin.avatar') do |user|
       if user.avatar.attached?
-        image_tag(user.avatar.variant(resize: '100x100'))
+        image_tag(user.avatar.variant(resize: '100x100!'))
       else
         image_tag('no_avatar.png')
       end
@@ -36,7 +36,7 @@ ActiveAdmin.register User do
     attributes_table do
       row :avatar do |user|
         if user.avatar.attached?
-          image_tag(user.avatar.variant(resize: '100x100'))
+          image_tag(user.avatar.variant(resize: '100x100!'))
         else
           image_tag('no_avatar.png')
         end
@@ -58,7 +58,6 @@ ActiveAdmin.register User do
       row :created_at
       row :updated_at
     end
-    # active_admin_comments
   end
 
   filter :email
@@ -74,11 +73,8 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
     end
-    f.inputs 'User Photo' do
-      if user.avatar.attached?
-        f.input :avatar, as: :file, hint: \
-          image_tag(f.object.avatar.variant(resize: '100x100'))
-      end
+    f.inputs I18n.t('admin.user_photo') do
+      f.input :avatar, as: :file, input_html: { multiple: false }
     end
     f.actions
   end
