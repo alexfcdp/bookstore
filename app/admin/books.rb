@@ -82,7 +82,7 @@ ActiveAdmin.register Book do
   end
   member_action :delimg, method: :put do
     book = Book.find(params[:id])
-    book.images.find(params[:format]).purge
+    book.images.find(params[:img_id]).purge
     redirect_to admin_book_path(book)
   end
 
@@ -123,7 +123,7 @@ ActiveAdmin.register Book do
                 a href: url_for(img) do
                   img src: image_path(url_for(img.variant(resize: '100x200'))), alt: img.filename
                   div link_to "#{I18n.t('admin.delete_img')} #{img.filename}", \
-                              delimg_admin_book_path(book, img.id), method: :put
+                              delimg_admin_book_path(id: book, img_id: img.id), method: :put
                   div '-----------------------------'
                 end
               end
