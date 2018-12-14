@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe CreditCard, type: :model do
   context 'db columns' do
     it { is_expected.to have_db_column(:number).of_type(:string) }
@@ -12,5 +10,12 @@ RSpec.describe CreditCard, type: :model do
 
   context 'relations' do
     it { is_expected.to belong_to(:order) }
+  end
+
+  context 'validations' do
+    it { is_expected.to validate_presence_of(:number) }
+    it { is_expected.to validate_presence_of(:card_owner) }
+    it { is_expected.to validate_length_of(:card_owner).is_at_most(RegexPayment::MAX) }
+    it { is_expected.to validate_numericality_of(:expiry_date).with_message(I18n.t('errors.expiry_date')) }
   end
 end

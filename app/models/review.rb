@@ -15,4 +15,5 @@ class Review < ApplicationRecord
                                                         less_than_or_equal_to: MAX_RATE }
   validates :title, length: { maximum: MAX_TITLE }, format: { with: TEXT }, presence: true
   validates :comment, length: { maximum: MAX_COMMENT }, format: { with: TEXT }, presence: true
+  validates :status, presence: true, inclusion: { in: statuses }
 end
