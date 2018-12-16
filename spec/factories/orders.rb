@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :order do
     order_number { "R#{Array.new(8) { [*'0'..'9'].sample }.join}" }
+    user
   end
 end
