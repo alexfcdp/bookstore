@@ -27,6 +27,10 @@ RSpec.describe BooksController, type: :controller do
     it 'assigns not nil @books' do
       expect(assigns(:books)).not_to be_nil
     end
+
+    it "route '/books' matcher test" do
+      expect route(:get, '/books').to(action: :index)
+    end
   end
 
   describe 'show action' do
@@ -44,6 +48,10 @@ RSpec.describe BooksController, type: :controller do
 
     it 'assigns @reviews' do
       expect(assigns(:reviews)).to eq(reviews)
+    end
+
+    it "route '/books/id' matcher test" do
+      expect route(:get, "/books/#{book.id}").to(action: :index, id: book.id)
     end
   end
 end
