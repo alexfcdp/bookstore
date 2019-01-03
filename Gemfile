@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
-gem 'active_storage_validations'
 gem 'activeadmin'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
@@ -26,7 +25,6 @@ gem 'omniauth-facebook'
 gem 'pg'
 gem 'puma'
 gem 'rails'
-gem 'rectify'
 gem 'sass-rails'
 gem 'slim'
 gem 'slim-rails'
@@ -56,7 +54,9 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'rails-controller-testing'
+  gem 'rubocop-rspec'
   gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'simplecov', require: false
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

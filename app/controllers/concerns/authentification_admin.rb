@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuthentificationAdmin
   def authenticate_active_admin_user!
     authenticate_user!
