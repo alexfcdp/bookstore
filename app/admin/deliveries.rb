@@ -16,6 +16,5 @@ ActiveAdmin.register Delivery do
   filter :terms
   filter :price
 
-  config.sort_order = 'name_asc'
-  config.per_page = [10, 20, 50, 100]
+  config.sort_order = AdminConst::NAME_ASC
 end

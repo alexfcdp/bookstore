@@ -79,6 +79,5 @@ ActiveAdmin.register Order do
     f.actions
   end
 
-  config.sort_order = 'created_at_desc'
-  config.per_page = [10, 20, 50, 100]
+  config.sort_order = AdminConst::CREATED_DESC
 end

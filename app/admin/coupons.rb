@@ -14,6 +14,5 @@ ActiveAdmin.register Coupon do
   filter :code
   filter :discount
 
-  config.sort_order = 'created_at_asc'
-  config.per_page = [10, 20, 50, 100]
+  config.sort_order = AdminConst::CREATED_ASC
 end

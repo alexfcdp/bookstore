@@ -170,6 +170,5 @@ ActiveAdmin.register Book do
     end
     f.actions
   end
-  config.sort_order = 'title_asc'
-  config.per_page = [10, 20, 50, 100]
+  config.sort_order = AdminConst::TITLE_ASC
 end

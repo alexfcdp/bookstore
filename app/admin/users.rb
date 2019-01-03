@@ -78,6 +78,5 @@ ActiveAdmin.register User do
     end
     f.actions
   end
-  config.sort_order = 'created_at_asc'
-  config.per_page = [10, 20, 50, 100]
+  config.sort_order = AdminConst::CREATED_ASC
 end

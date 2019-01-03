@@ -53,6 +53,5 @@ ActiveAdmin.register Review do
   filter :rating, as: :check_boxes, collection: 0..5
   filter :created_at
 
-  config.sort_order = 'created_at_desc'
-  config.per_page = [10, 20, 50, 100]
+  config.sort_order = AdminConst::CREATED_DESC
 end
