@@ -175,6 +175,7 @@ en:
     file_content: 'Images only allows jpeg and png'
     phone_code: 'Invalid code format'
     expiry_date: 'Expected format is MM/YY'
+    nil_book: 'Requested book not found'
 
   filter_book:
     newest: 'Newest first'
