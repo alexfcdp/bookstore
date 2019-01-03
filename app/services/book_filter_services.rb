@@ -40,11 +40,13 @@ class BookFilterServices
   end
 
   def paginates_per
-    (@params[:per].presence || LIMIT_BOOKS).to_i
+    return @params[:per].to_i if @params[:per] && @params[:per].to_i >= 1
+    LIMIT_BOOKS
   end
 
   def sort
-    @params[:sort].presence || I18n.t('filter_book').keys[4]
+    return @params[:sort] if @params[:sort] && I18n.t('filter_book').include?(@params[:sort].to_sym)
+    I18n.t('filter_book').keys[4]
   end
 
   def show_more_books
