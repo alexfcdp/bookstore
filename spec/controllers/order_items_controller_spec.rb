@@ -3,7 +3,7 @@
 RSpec.describe OrderItemsController, type: :controller do
   describe 'POST #create' do
     let(:book) { create(:book) }
-    let(:order) { OrderService.new(nil).order[:create].call }
+    let(:order) { CreateOrderService.new(nil).call }
     let(:params) { { book_id: book.id, quantity: 1, action: 'create' } }
     let(:result) { OrderItemService.new(order, ActionController::Parameters.new(params)).call }
     before do

@@ -5,7 +5,7 @@ class OrderItemsController < ApplicationController
 
   def create
     if current_order.blank?
-      order = OrderService.new(current_user).order[:create].call
+      order = CreateOrderService.new(current_user).call
       session[:order_id] = order.id unless user_signed_in?
     end
     order_item_service

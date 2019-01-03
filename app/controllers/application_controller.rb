@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    @current_order ||= OrderService.new(current_user, session[:order_id]).order[:find].call
+    @current_order ||= FindOrderService.new(current_user, session[:order_id]).call
     session[:order_id] = nil if user_signed_in?
     @current_order
   end
