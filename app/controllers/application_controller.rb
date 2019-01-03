@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include AuthentificationAdmin
   protect_from_forgery prepend: true
   helper_method :current_order
   before_action :set_locale
@@ -11,13 +12,6 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to main_app.root_url, notice: exception.message }
       format.js   { head :forbidden, content_type: 'text/html' }
     end
-  end
-
-  def authenticate_active_admin_user!
-    authenticate_user!
-    return if current_user.admin?
-    flash[:alert] = I18n.t('admin.unauthorized')
-    redirect_to root_path
   end
 
   def current_order
