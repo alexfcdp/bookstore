@@ -4,15 +4,35 @@ RSpec.describe OrderHelper, type: :helper do
   let(:order) { create(:order, :with_associations).decorate }
 
   describe '#order_sort_by' do
-    it "returns order sort by 'all'" do
+    it "returns sort order by 'all', if params[:filter] = nil" do
       expect(helper.order_sort_by).to eq(I18n.t('sort').fetch(:all))
+    end
+
+    it "returns sort order by 'all', if params[:filter] is not valid" do
+      controller.params[:filter] = 'in_delivery999'
+      expect(helper.order_sort_by).to eq(I18n.t('sort').fetch(:all))
+    end
+
+    I18n.t('sort').keys.each do |filter|
+      it "returns order sort by #{filter}" do
+        controller.params[:filter] = filter
+        expect(helper.order_sort_by).to eq(I18n.t('sort').fetch(filter))
+      end
     end
   end
 
   describe '#status' do
+    let(:statuses) { Order.statuses.keys.push('all') }
+
     it "returns order sort by status 'in_queue'" do
       order.in_queue!
       expect(helper.status(order.status)).to eq(I18n.t('sort').fetch(order.status.to_sym))
+    end
+
+    I18n.t('sort').keys.each do |status|
+      it "order statuses include #{status}" do
+        expect(statuses).to include(status.to_s)
+      end
     end
   end
 

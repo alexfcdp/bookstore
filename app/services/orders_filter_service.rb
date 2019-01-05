@@ -7,7 +7,7 @@ class OrdersFilterService
   end
 
   def call
-    return orders.accepted if @params.blank?
+    return orders.accepted unless params_valid?
     orders.accepted.send(@params)
   end
 
@@ -15,5 +15,9 @@ class OrdersFilterService
 
   def orders
     @user.orders
+  end
+
+  def params_valid?
+    I18n.t('sort').include?(@params.try(:to_sym))
   end
 end

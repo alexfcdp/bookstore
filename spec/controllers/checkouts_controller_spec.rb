@@ -92,7 +92,7 @@ RSpec.describe CheckoutsController, type: :controller do
           end
           it { expect route(:put, "/checkouts/#{step}").to(action: :update, id: step) }
           it { expect(response).to render_template(step) }
-          it { expect(flash.now[:alert]).to eq(ErrorsServise.new(user, order, step).call) }
+          it { expect(flash.now[:alert]).to eq(ErrorsService.new(order, step).call) }
         end
 
         context "valid #{step}" do

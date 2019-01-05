@@ -16,6 +16,6 @@ module OrderHelper
   private
 
   def filter
-    params[:filter] || :all
+    I18n.t('sort')[params[:filter].try(:to_sym)] ? params[:filter] : 'all'
   end
 end

@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-class ErrorsServise
+class ErrorsService
   include AddressConst
 
-  def initialize(user, order, step)
-    @user = user
+  def initialize(order, step)
     @order = order
     @step = step
   end

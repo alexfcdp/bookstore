@@ -18,7 +18,7 @@ class CheckoutsController < ApplicationController
 
   def update
     return redirect_to wizard_path(next_step) if CheckoutService.new(@user, @order, params, step).call
-    flash.now[:alert] = ErrorsServise.new(@user, @order, step).call
+    flash.now[:alert] = ErrorsService.new(@order, step).call
     render step
   end
 
