@@ -1,7 +1,7 @@
 - if current_order.try(:order_items).blank?
   p.text-center
     = t('cart.no_items')
-    = link_to "go back", root_path
+    = link_to t('cart.go_back'), root_path
     = t('cart.to_cart')
 - elsif current_order.order_items.size >= 1
   .hidden-xs

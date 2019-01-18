@@ -57,6 +57,9 @@ group :test do
   gem 'rubocop-rspec'
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'simplecov', require: false
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

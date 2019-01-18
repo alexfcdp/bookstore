@@ -32,7 +32,7 @@ main.container
                 i.fa.fa-plus[style="line-height: 35px;"]
           = f.hidden_field :book_id, value: @book.id
           .col-xs-7.col-md-5
-            = f.submit "Add to Cart", class: "btn btn-default pull-right general-position"
+            = f.submit t('button.add_to_cart'), class: "btn btn-default pull-right general-position"
       .general-info-wrap.divider-lg
         p
           = t('description')

@@ -8,6 +8,12 @@ RSpec.describe BookDecorator do
     it 'returns no_cover.jpg if the book has no skin' do
       expect(book.cover).to eq(url: 'no_cover.jpg', name: 'no_cover')
     end
+
+    it 'returns first cover book' do
+      book.images.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'avatar.jpg')), \
+                         filename: 'avatar.jpg', content_type: 'image/jpg')
+      expect(book.cover[:name]).to eq(book.images.first.filename)
+    end
   end
 
   describe '#authors' do

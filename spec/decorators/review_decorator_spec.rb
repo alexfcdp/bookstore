@@ -14,6 +14,12 @@ RSpec.describe ReviewDecorator do
     it 'returns email name if there is no user name' do
       expect(email.capitalize).to match(review.name)
     end
+
+    it 'returns full name user' do
+      user = create(:user, :with_addresses)
+      comment = create(:review, user: user).decorate
+      expect(comment.name).to match(user.billing_address.firstname + ' ' + user.billing_address.lastname)
+    end
   end
 
   describe '#date' do

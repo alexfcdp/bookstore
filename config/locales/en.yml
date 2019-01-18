@@ -19,6 +19,7 @@ en:
     log_in: 'Log In'
     sing_up: 'Sing Up'
     buy_now: 'Buy Now'
+    add_to_cart: 'Add to Cart'
 
   info:
     thank_you: 'Thank You for your Order!'
@@ -134,21 +135,18 @@ en:
     book: 'Book'
     price: 'Price'  
     quantity: 'Quantity'
-    subTotal: 'SubTotal'
+    subtotal: 'SubTotal'
     total: 'Total'
 
   cart:
-    no_items: 'There are no items in your shopping cart.  Please '
+    no_items: 'There are no items in your shopping cart. Please '
+    go_back: 'go back'
     to_cart: ' and add some items to your cart.' 
     name: 'Cart'
     confirm: 'Are you sure you wish to delete the book '
     confirm_end: 'from your cart?'
     code: 'Enter Your Coupon Code'
     apply_coupon: 'Apply Coupon'
-    # good: 'Good'
-    # error: 'Error'
-    # apply: 'Coupon successfully applied'
-    # not_found: 'Coupon not found!'
 
   order:
     my_orders: 'My Orders'

@@ -70,8 +70,7 @@ RSpec.describe FilterCheckoutsService do
       order.update(credit_card: credit_card)
     end
     it "redirect to 'confirm' at each stage, if the payment is not empty" do
-      steps.each do |step|
-        next if step == CheckoutConst::CONFIRM || CheckoutConst::COMPLETE
+      steps[0...-2].each do |step|
         expect(FilterCheckoutsService.new(user, order, id: step).call).to eq(redirect: :confirm, render: nil)
       end
     end

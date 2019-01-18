@@ -6,7 +6,7 @@
     - if edit
       = link_to t('checkout.edit'), wizard_path(:delivery, edit: 1), class: "general-edit"
     br/
-    = @order.delivery.terms
+    = order.delivery.terms
 .col-sm-3
   h3.general-subtitle class=("mt-0" if !edit)
     = t('credit_card.payment_info')
