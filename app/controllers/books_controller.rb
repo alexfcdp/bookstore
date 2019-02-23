@@ -10,6 +10,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find_by(id: params[:id]).try(:decorate)
     return redirect_to books_path, alert: t('errors.nil_book') if @book.blank?
+
     @reviews = @book.reviews.approved.decorate
   end
 end

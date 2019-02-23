@@ -8,6 +8,7 @@ class OrdersFilterService
 
   def call
     return orders.accepted unless params_valid?
+
     orders.accepted.send(@params)
   end
 

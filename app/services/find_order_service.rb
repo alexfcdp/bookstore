@@ -18,12 +18,14 @@ class FindOrderService
 
   def find_by_session
     return if @order_id.blank?
+
     @find_by_session ||= Order.in_progress.find_by(id: @order_id)
   end
 
   def find_user_order
     @find_user_order ||= @user.orders.in_progress.first
     return @find_user_order if find_by_session.blank?
+
     OrderMergerService.new(@user, @find_user_order, @find_by_session).call
   end
 end

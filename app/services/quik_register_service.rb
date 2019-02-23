@@ -7,6 +7,7 @@ class QuikRegisterService
 
   def call
     return if user_found?
+
     user = User.new(email: @email, password: Devise.friendly_token(10))
     send_email(user) if user.save
     user

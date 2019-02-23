@@ -11,13 +11,16 @@ class CheckoutsController < ApplicationController
 
   def show
     return redirect_to root_path if @order.blank?
+
     filter = FilterCheckoutsService.new(@user, @order, params).call
     return redirect_to wizard_path(filter[:redirect]) if filter[:render].blank?
+
     render_wizard
   end
 
   def update
     return redirect_to wizard_path(next_step) if CheckoutService.new(@user, @order, params, step).call
+
     flash.now[:alert] = ErrorsService.new(@order, step).call
     render step
   end

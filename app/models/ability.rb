@@ -6,6 +6,7 @@ class Ability
   def initialize(user)
     user ||= User.new
     return unless user.persisted?
+
     if user.admin?
       can :read, ActiveAdmin::Page, namespace_name: :admin
       can :manage, :all

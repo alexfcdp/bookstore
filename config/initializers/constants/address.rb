@@ -6,9 +6,9 @@ module AddressConst
 end
 
 module RegexAddress
-  TEXT_FIELDS = /\A(([a-zA-Z]+)([-\,'\s]?)([a-zA-Z]+))+\z/
-  PHONE = /\A\+\d{10,14}\z/
-  ZIP = /\A((\d)[-]?){1,10}\z/
-  ADDRESS = /\A(([a-zA-Z0-9]+)([-\,'\s]?)([a-zA-Z0-9]+))+\z/
+  TEXT_FIELDS = /\A(([a-zA-Z]+)([-\,'\s]?)([a-zA-Z]+))+\z/.freeze
+  PHONE = /\A\+\d{10,14}\z/.freeze
+  ZIP = /\A((\d)[-]?){1,10}\z/.freeze
+  ADDRESS = /\A(([a-zA-Z0-9]+)([-\,'\s]?)([a-zA-Z0-9]+))+\z/.freeze
   MAX_LENGTH = 50
 end

@@ -5,9 +5,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     return super if params[:user].key?('password')
+
     user = QuikRegisterService.new(email).call
     return redirect_to checkouts_path, alert: t('user.email_busy') if user.blank?
     return redirect_to checkouts_path, alert: user.errors.full_messages.join(', ') if user.errors.present?
+
     sign_in(:user, user)
     redirect_to checkouts_path, notice: t('user.send_email') + user.email
   end
@@ -15,6 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     return super if type.blank?
     return redirect if AddressService.new(resource, address_params, type).call
+
     flash.now[:alert] = resource.send(type.to_sym).errors.full_messages.join(', ')
     render :edit
   end
@@ -44,6 +47,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update_resource(resource, params)
     return super if params.key?(:password)
+
     resource.update_without_password(params)
   end
 

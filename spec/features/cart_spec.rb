@@ -38,7 +38,7 @@ RSpec.describe 'Cart page', type: :feature do
         click_on(I18n.t('cart.apply_coupon'))
       end
       page.execute_script 'window.confirm = function () { return true }'
-      discount = "#{I18n.t('summary.coupon')}#{I18n.t('currency_sign')}#{coupon.discount}" 
+      discount = "#{I18n.t('summary.coupon')}#{I18n.t('currency_sign')}#{coupon.discount}"
       expect(find('.col-sm-8')).to have_content(discount)
     end
 

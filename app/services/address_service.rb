@@ -11,6 +11,7 @@ class AddressService
 
   def call
     return false unless type_address.key?(@type)
+
     address.blank? ? create_address : address_update
   end
 

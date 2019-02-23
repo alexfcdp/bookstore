@@ -21,6 +21,7 @@ class BookFilterServices
   def catalog
     lambda do |object|
       return object if category.blank?
+
       object.books_category(category)
     end
   end
@@ -31,6 +32,7 @@ class BookFilterServices
 
   def sort
     return @params[:sort] if @params[:sort] && I18n.t('filter_book').include?(@params[:sort].to_sym)
+
     I18n.t('filter_book').keys[4]
   end
 end

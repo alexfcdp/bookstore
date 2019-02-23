@@ -9,6 +9,7 @@ RSpec.describe FilterCheckoutsService do
     it "redirect to 'login' at every step" do
       steps.each do |step|
         next if step == CheckoutConst::LOGIN
+
         expect(FilterCheckoutsService.new(nil, order, id: step).call).to eq(redirect: :login, render: nil)
       end
     end
@@ -21,6 +22,7 @@ RSpec.describe FilterCheckoutsService do
     it "redirect to 'address' at every step if the address is missing" do
       steps.each do |step|
         next if step == CheckoutConst::ADDRESS
+
         expect(FilterCheckoutsService.new(user, order, id: step).call).to eq(redirect: :address, render: nil)
       end
     end
@@ -40,6 +42,7 @@ RSpec.describe FilterCheckoutsService do
     it "redirect to 'delivery' at each stage, if the address is not empty" do
       steps.each do |step|
         next if step == CheckoutConst::DELIVERY
+
         expect(FilterCheckoutsService.new(user, order, id: step).call).to eq(redirect: :delivery, render: nil)
       end
     end
@@ -56,6 +59,7 @@ RSpec.describe FilterCheckoutsService do
     it "redirect to 'payment' at each stage, if the delivery is not empty" do
       steps.each do |step|
         next if step == CheckoutConst::PAYMENT
+
         expect(FilterCheckoutsService.new(user, order, id: step).call).to eq(redirect: :payment, render: nil)
       end
     end

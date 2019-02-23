@@ -18,6 +18,7 @@ class ReviewDecorator < Draper::Decorator
 
   def self.errors(review, key)
     return false if review.blank?
+
     review.errors[key].present?
   end
 
@@ -30,6 +31,7 @@ class ReviewDecorator < Draper::Decorator
 
   def full_name(type)
     return if object.user.send(type).blank?
+
     object.user.send(type).firstname + ' ' + object.user.send(type).lastname
   end
 end

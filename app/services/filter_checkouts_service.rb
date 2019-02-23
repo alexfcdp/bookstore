@@ -31,6 +31,7 @@ class FilterCheckoutsService
 
   def complete?
     return false if @order.credit_card.blank?
+
     @step == COMPLETE
   end
 

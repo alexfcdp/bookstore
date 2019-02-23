@@ -11,6 +11,7 @@ module CheckoutsHelper
 
   def mask_card
     return if @order.credit_card.blank?
+
     "** ** ** #{@order.credit_card.number}"
   end
 end

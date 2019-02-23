@@ -19,6 +19,7 @@ gem 'font-awesome-rails'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -31,7 +32,6 @@ gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wicked'
-gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -53,13 +53,13 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'rails-controller-testing'
   gem 'rubocop-rspec'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '4.0.0.rc1'
   gem 'simplecov', require: false
-  gem 'selenium-webdriver'
-  gem 'chromedriver-helper'
   gem 'webdrivers'
 end
 

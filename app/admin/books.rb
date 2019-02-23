@@ -12,6 +12,7 @@ ActiveAdmin.register Book do
     def edit
       @book = Book.find(params[:id])
       return unless @book.dimensions?
+
       @book.height = @book.dimensions[:height]
       @book.width = @book.dimensions[:width]
       @book.depth = @book.dimensions[:depth]

@@ -17,8 +17,10 @@ class Address < ApplicationRecord
 
   def validate_phone_code
     return if phone.blank?
+
     country = Country.find(country_id)
     return if phone.include?(country.phone_code)
+
     errors.add(:phone, I18n.t('errors.phone') + country.phone_code)
   end
 end

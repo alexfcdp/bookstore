@@ -14,6 +14,7 @@ class OrderDecorator < Draper::Decorator
 
   def order_total
     return delivery_price if discount > subtotal
+
     subtotal - discount + delivery_price
   end
 
@@ -31,6 +32,7 @@ class OrderDecorator < Draper::Decorator
 
   def address_errors(type)
     return if send(type.to_sym).blank?
+
     send(type.to_sym).errors.full_messages.join(', ')
   end
 end

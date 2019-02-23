@@ -29,6 +29,7 @@ class CheckoutService
 
   def create_payment
     return @order.credit_card.update(paymant_params) if @order.credit_card.present?
+
     @order.create_credit_card(paymant_params).valid?
   end
 

@@ -22,6 +22,7 @@ class OrderItemDecorator < Draper::Decorator
 
   def quantity
     return add_quantity if order_item.present? && @params[:book_id].present?
+
     @params[:quantity].to_i
   end
 
@@ -31,6 +32,7 @@ class OrderItemDecorator < Draper::Decorator
 
   def book
     return order_item.book if order_item.present?
+
     @book ||= Book.find_by(id: @params[:book_id])
   end
 end

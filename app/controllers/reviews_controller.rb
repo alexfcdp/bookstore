@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.create(review_params)
     return redirect_to @review.book, notice: I18n.t('review.msg') if @review.valid?
+
     flash.now[:alert] = @review.errors.full_messages.join(', ')
     show_render
   end
