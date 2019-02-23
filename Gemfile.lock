@@ -428,6 +428,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   jquery-turbolinks
+  kaminari
   letter_opener
   letter_opener_web
   listen

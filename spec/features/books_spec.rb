@@ -32,7 +32,7 @@ RSpec.describe 'Books page', type: :feature do
 
     it "button click '#{I18n.t('button.view_more')}'" do
       click_link(I18n.t('button.view_more'))
-      expect(page).to have_current_path('/en/books?per=24')
+      expect(page).to have_current_path('/en/books?page=2')
     end
 
     it 'checks quantity of books in each category' do

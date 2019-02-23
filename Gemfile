@@ -31,6 +31,7 @@ gem 'slim-rails'
 gem 'turbolinks'
 gem 'uglifier'
 gem 'wicked'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

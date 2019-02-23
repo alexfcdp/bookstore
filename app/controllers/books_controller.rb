@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   def index
     @services = BookFilterServices.new(params)
     @books = @services.catalog_with_category
+    respond_to :html, :js
   end
 
   def show

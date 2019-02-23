@@ -18,27 +18,21 @@ RSpec.describe BookFilterServices do
     end
   end
 
-  { '': 12, '5': 5, '15': 15, '20': 20, '30': 20, '100': 20 }.each do |key, per|
-    it "returns the specified number '#{key} : #{per}' of books" do
-      books = BookFilterServices.new(per: key.to_s).catalog_with_category
-      expect(books.count).to eq(per)
+  { '1': 12, '2': 8, '3': 0 }.each do |page, count|
+    it "returns page '#{page} : #{count}' of books" do
+      books = BookFilterServices.new(page: page.to_s).catalog_with_category
+      expect(books.count).to eq(count)
+      expect(books.current_page).to eq(page.to_s.to_i)
     end
   end
 
-  context 'checks methods #per_page, #disable_button? and #sort_by ' do
-    let(:books_servise) { BookFilterServices.new({}) }
-    before { books_servise.catalog_with_category }
-
-    it 'returns false if not all books are shown' do
-      expect(books_servise.disable_button?).to be false
-    end
-
-    it 'returns a large number of books' do
-      expect(books_servise.per_page).to eq(20)
-    end
-
-    it 'sorts books by default' do
-      expect(books_servise.sort_by).to eq('Title: A - Z')
+  context 'checks methods #sort_by' do
+    { {} => 'Title: A - Z', { sort: 'popular' } => 'Popular first',
+      { sort: 'invalid' } => 'Title: A - Z' }.each do |hash, name|
+      it "sorts books by params #{hash}" do
+        books_servise = BookFilterServices.new(hash)
+        expect(books_servise.sort_by).to eq(name.to_s)
+      end
     end
   end
 end

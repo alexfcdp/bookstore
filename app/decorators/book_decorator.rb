@@ -3,6 +3,10 @@
 class BookDecorator < Draper::Decorator
   delegate_all
 
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
+
   def cover
     if object.images.present?
       { url: object.images.first.variant(resize: '485x580!'), name: object.images.first.filename }
