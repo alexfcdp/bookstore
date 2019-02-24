@@ -1,5 +1,13 @@
 # README
 
+email: admin@amazing.com
+password: 12345678
+
+# Coupons:
+* code: BLACK-555, discount: 100
+* code: AMAZING, discount: 50
+* code: 666666, discount: 25
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
